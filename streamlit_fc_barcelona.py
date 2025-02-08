@@ -179,7 +179,7 @@ if competitions:
 
             # ✅ Add footer
             endnote = "Made by Rishav. Data Source: OPTA. Built Using: Python and Streamlit."
-            plt.figtext(0.515, 0.12, endnote, ha="center", va="top", fontsize=13, color="white")
+            plt.figtext(0.52, 0.115, endnote, ha="center", va="top", fontsize=13, color="white")
 
             # ✅ Display plot in Streamlit
             st.pyplot(fig)
