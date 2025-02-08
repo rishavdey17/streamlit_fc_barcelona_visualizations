@@ -178,8 +178,8 @@ if competitions:
             plot_actions(filtered_data, ax, pitch)
 
             # ✅ Add footer
-            endnote = "Made by Rishav Dey. Data Source: OPTA. Built Using: Python and Streamlit."
-            plt.figtext(0.515, 0.115, endnote, ha="center", va="top", fontsize=13, color="white")
+            endnote = "Made by Rishav. Data Source: OPTA. Built Using: Python and Streamlit."
+            plt.figtext(0.515, 0.118, endnote, ha="center", va="top", fontsize=13, color="white")
 
             # ✅ Display plot in Streamlit
             st.pyplot(fig)
