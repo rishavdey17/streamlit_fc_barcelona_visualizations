@@ -116,7 +116,7 @@ if competitions:
                 for df_subset in [assist, chance, passes, passes_successful, passes_unsuccessful]:
                     df_subset[['x', 'y', 'end_x', 'end_y']] = df_subset[['x', 'y', 'end_x', 'end_y']].astype(float)
 
-                if selected_player in ["Wojciech Szczesny", "Inaki Pena", "Iñaki Peña", "Marc-Andre ter Stegen"]:
+                if selected_player in ["Wojciech Szczesny", "Wojciech Szczęsny", "Inaki Pena", "Iñaki Peña", "Marc-Andre ter Stegen"]:
                     de = pitch.kdeplot(passes.x, passes.y, ax=ax, shade=True, shade_lowest=False, alpha=0.4, n_levels=10, cmap='magma')
                     pitch.arrows(passes_successful.x, passes_successful.y, passes_successful.end_x, passes_successful.end_y, width=0.6, headwidth=5, headlength=5, color='#00ff00', ax=ax, label='Successful Pass')
                     pitch.arrows(passes_unsuccessful.x, passes_unsuccessful.y, passes_unsuccessful.end_x, passes_unsuccessful.end_y, width=0.6, headwidth=5, headlength=5, color='red', ax=ax, label='Unsuccessful Pass')
