@@ -122,7 +122,7 @@ if competitions:
                     pitch.arrows(passes_unsuccessful.x, passes_unsuccessful.y, passes_unsuccessful.end_x, passes_unsuccessful.end_y, width=0.6, headwidth=5, headlength=5, color='red', ax=ax, label='Unsuccessful Pass')
                     plt.scatter(block['y'], block['x'], s = 200, c = '#00ff00', marker = '*', edgecolor = '#000000', label ='Save')
                     plt.scatter(punch['y'], punch['x'], s = 100, c = '#ffec00', marker = 'o', edgecolor = '#000000', label = 'Punch')
-                    plt.scatter(pickup['y'], pickup['x'], s = 120, c = '#dd571c', marker = 'P', edgecolor = '#000000', label = 'Pick-Up')
+                    plt.scatter(pickup['y'], pickup['x'], s = 120, c = '#dd571c', marker = '+', edgecolor = '#000000', label = 'Pick-Up')
                     plt.scatter(recovery['y'], recovery['x'], s= 120, c = '#fcd200', marker = ',', edgecolor = '#000000', label = 'Ball Recovery')
                     plt.scatter(tackle['y'], tackle['x'], s= 120,c = 'cyan', marker = ',', edgecolor = '#000000', label = 'Tackle')
                     plt.scatter(interception['y'], interception['x'], s = 120, c = '#ff007f', marker = ',', edgecolor = '#000000', label = 'Interception')
