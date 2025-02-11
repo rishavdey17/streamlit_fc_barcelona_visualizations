@@ -8,7 +8,8 @@ from mplsoccer.pitch import Pitch, VerticalPitch
 from scipy.spatial import ConvexHull
 from natsort import natsorted
 
-action_filter = st.session_state.action_filter
+if "action_filter" not in st.session_state:
+    st.session_state.action_filter = "ALL ACTIONS IN THE MATCH"
 
 # App Title and Description
 st.title("FC Barcelona 2024-25")
