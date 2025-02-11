@@ -8,6 +8,8 @@ from mplsoccer.pitch import Pitch, VerticalPitch
 from scipy.spatial import ConvexHull
 from natsort import natsorted
 
+action_filter = st.session_state.action_filter
+
 # App Title and Description
 st.title("FC Barcelona 2024-25")
 st.subheader("Visualizing the Actions, Passes and Heat Map of all Barça players in the match.")
@@ -81,8 +83,6 @@ if competitions:
             pitch = VerticalPitch(pitch_type='opta', pitch_color='black', line_color='white', linewidth=3, corner_arcs=True)
             fig, ax = pitch.draw(figsize=(10, 10), constrained_layout=True, tight_layout=False)
             fig.set_facecolor('black')
-
-            action_filter = st.session_state.action_filter
 
             if action_filter == "ALL ACTIONS IN THE MATCH":
                 goal = filtered_data[filtered_data['typeId'] == 16]
