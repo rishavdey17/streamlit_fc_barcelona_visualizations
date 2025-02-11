@@ -10,7 +10,7 @@ from natsort import natsorted
 
 # App Title and Description
 st.title("FC Barcelona 2024-25")
-st.subheader("Visualizing Actions, Passes and Heat Map of all Barça players in the match.")
+st.subheader("Visualizing the Actions, Passes and Heat Map of all Barça players in the match.")
 
 # Define the root folder containing competitions
 matches_folder = "Matches"
