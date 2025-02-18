@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import glob
 import os
-from mplsoccer.pitch import Pitch, VerticalPitch
+from mplsoccer import Pitch, VerticalPitch
 from scipy.spatial import ConvexHull
 from natsort import natsorted
 
@@ -138,9 +138,10 @@ if competitions:
                     plt.scatter(block['y'], block['x'], s = 200, c = '#00ff00', marker = '*', edgecolor = '#000000', label ='Save')
                     plt.scatter(punch['y'], punch['x'], s = 100, c = '#ffec00', marker = 'o', edgecolor = '#000000', label = 'Punch')
                     plt.scatter(pickup['y'], pickup['x'], s = 120, c = '#dd571c', marker = '+', edgecolor = '#000000', label = 'Pick-Up')
-                    plt.scatter(recovery['y'], recovery['x'], s= 120, c = '#fcd200', marker = ',', edgecolor = '#000000', label = 'Ball Recovery')
-                    plt.scatter(tackle['y'], tackle['x'], s= 120,c = 'cyan', marker = ',', edgecolor = '#000000', label = 'Tackle')
-                    plt.scatter(interception['y'], interception['x'], s = 120, c = '#ff007f', marker = ',', edgecolor = '#000000', label = 'Interception')
+                    plt.scatter(succ_dribble['y'], succ_dribble['x'], s= 200, c = '#009afd', marker = '*', edgecolor = '#000000', label = 'Dribble') #fc3900
+                    plt.scatter(tackle['y'], tackle['x'], s= 130,c = '#bebebe', marker = 'H', edgecolor = '#000000', label = 'Tackle')
+                    plt.scatter(recovery['y'], recovery['x'], s= 130, c = '#fcd200', marker = 'H', edgecolor = '#000000', label = 'Ball Recovery')
+                    plt.scatter(interception['y'], interception['x'], s = 130, c = '#ff007f', marker = 'H', edgecolor = '#000000', label = 'Interception')
                     plt.scatter(clearance['y'], clearance['x'], s = 100, c = '#9999ff', marker = 'x', edgecolor = '#000000', label = 'Clearance')
                     plt.scatter(offside['y'], offside['x'], s= 120, c = '#fcd200', marker = 'P', edgecolor = '#000000', label = 'Offside Provoked')
                     plt.scatter(shield['y'], shield['x'], s = 50, c = '#dd571c', marker = 'D', edgecolor = '#000000', label = 'Shielding Ball Out')
@@ -162,7 +163,7 @@ if competitions:
                 else:
                     de = pitch.kdeplot(passes.x, passes.y, ax=ax, shade=True, shade_lowest=False, alpha=0.4, n_levels=10, cmap='magma')
 
-                    ax.scatter(goal['y'], goal['x'], s=120, c='#00ff00', edgecolor='#000000', label='Goal')
+                    pitch.scatter(goal['x'], goal['y'], s=150, c='#00ff00', edgecolors='#06402b', label='Goal', marker = 'football', ax=ax)
                     ax.scatter(shot_saved['y'], shot_saved['x'], s=120, c='#ff7c60', edgecolor='#000000', label='Saved/Blocked Shot')
                     ax.scatter(shot_post['y'], shot_post['x'], s=120, c='w', edgecolor='#000000', label='Shot Off Woodwork')
                     ax.scatter(shot_miss['y'], shot_miss['x'], s=120, c='r', edgecolor='#000000', label='Shot Off Target')
@@ -176,11 +177,11 @@ if competitions:
                     pitch.arrows(passes_successful.x, passes_successful.y, passes_successful.end_x, passes_successful.end_y, width=0.6, headwidth=5, headlength=5, color='#00ff00', ax=ax, label='Completed Pass')
                     pitch.arrows(passes_unsuccessful.x, passes_unsuccessful.y, passes_unsuccessful.end_x, passes_unsuccessful.end_y, width=0.6, headwidth=5, headlength=5, color='red', ax=ax, label='Incomplete Pass')
 
-                    plt.scatter(succ_dribble['y'], succ_dribble['x'], s= 200, c = '#fc3900', marker = '*', edgecolor = '#000000', label = 'Dribble')
-                    plt.scatter(recovery['y'], recovery['x'], s= 120, c = '#fcd200', marker = ',', edgecolor = '#000000', label = 'Ball Recovery')
-                    plt.scatter(tackle['y'], tackle['x'], s= 120,c = 'cyan', marker = ',', edgecolor = '#000000', label = 'Tackle')
-                    plt.scatter(block['y'], block['x'], s = 120, c = '#009afd', marker = ',', edgecolor = '#000000', label ='Block')
-                    plt.scatter(interception['y'], interception['x'], s = 120, c = '#ff007f', marker = ',', edgecolor = '#000000', label = 'Interception')
+                    plt.scatter(succ_dribble['y'], succ_dribble['x'], s= 200, c = '#009afd', marker = '*', edgecolor = '#000000', label = 'Dribble') #fc3900
+                    plt.scatter(tackle['y'], tackle['x'], s= 130,c = '#bebebe', marker = 'H', edgecolor = '#000000', label = 'Tackle')
+                    plt.scatter(recovery['y'], recovery['x'], s= 130, c = '#fcd200', marker = 'H', edgecolor = '#000000', label = 'Ball Recovery')
+                    plt.scatter(block['y'], block['x'], s = 130, c = 'cyan', marker = 'H', edgecolor = '#000000', label ='Block') #009afd
+                    plt.scatter(interception['y'], interception['x'], s = 130, c = '#ff007f', marker = 'H', edgecolor = '#000000', label = 'Interception'))
                     plt.scatter(clearance['y'], clearance['x'], s = 100, c = '#9999ff', marker = 'x', edgecolor = '#000000', label = 'Clearance')
                     plt.scatter(offside['y'], offside['x'], s= 120, c = '#fcd200', marker = 'P', edgecolor = '#000000', label = 'Offside Provoked')
                     plt.scatter(shield['y'], shield['x'], s = 50, c = '#dd571c', marker = 'D', edgecolor = '#000000', label = 'Shielding Ball Out')
@@ -272,7 +273,7 @@ if competitions:
 
                 if selected_player in ["Wojciech Szczesny", "Wojciech Szczęsny", "Inaki Pena", "Iñaki Peña", "Marc-Andre ter Stegen"]:
                     de = pitch.kdeplot(passes.x, passes.y, ax=ax, shade=True, shade_lowest=False, alpha=0.4, n_levels=10, cmap='magma')
-                    ax.scatter(goal['y'], goal['x'], s=120, c='#00ff00', edgecolor='#000000', label='Goal')
+                    pitch.scatter(goal['x'], goal['y'], s=150, c='#00ff00', edgecolors='#06402b', label='Goal', marker = 'football', ax=ax)
                     ax.scatter(shot_saved['y'], shot_saved['x'], s=120, c='#ff7c60', edgecolor='#000000', label='Saved/Blocked Shot')
                     ax.scatter(shot_post['y'], shot_post['x'], s=120, c='w', edgecolor='#000000', label='Shot Off Woodwork')
                     ax.scatter(shot_miss['y'], shot_miss['x'], s=120, c='r', edgecolor='#000000', label='Shot Off Target')
@@ -283,7 +284,7 @@ if competitions:
                     pitch.lines(chance.x, chance.y, chance.end_x, chance.end_y, color='#ffea00', comet = True, lw = 2.5, ax=ax, label='Key Pass')
                     ax.scatter(chance['end_y'], chance['end_x'], s=50, c='black', edgecolor='#ffea00')
 
-                    plt.scatter(succ_dribble['y'], succ_dribble['x'], s= 200, c = '#fc3900', marker = '*', edgecolor = '#000000', label = 'Dribble')
+                    plt.scatter(succ_dribble['y'], succ_dribble['x'], s= 200, c = '#009afd', marker = '*', edgecolor = '#000000', label = 'Dribble')
 
                     plt.scatter(foul_won['y'], foul_won['x'], s= 120, c = '#008000', marker = 'X', edgecolor = '#000000', label = 'Foul Won')
                     plt.scatter(foul_committed['y'], foul_committed['x'], s= 120, c = '#c21919', marker = 'X', edgecolor = '#000000', label = 'Foul Committed')
@@ -301,7 +302,7 @@ if competitions:
 
                 else:
                     de = pitch.kdeplot(passes.x, passes.y, ax=ax, shade=True, shade_lowest=False, alpha=0.4, n_levels=10, cmap='magma')
-                    ax.scatter(goal['y'], goal['x'], s=120, c='#00ff00', edgecolor='#000000', label='Goal')
+                    pitch.scatter(goal['x'], goal['y'], s=150, c='#00ff00', edgecolors='#06402b', label='Goal', marker = 'football', ax=ax)
                     ax.scatter(shot_saved['y'], shot_saved['x'], s=120, c='#ff7c60', edgecolor='#000000', label='Saved/Blocked Shot')
                     ax.scatter(shot_post['y'], shot_post['x'], s=120, c='w', edgecolor='#000000', label='Shot Off Woodwork')
                     ax.scatter(shot_miss['y'], shot_miss['x'], s=120, c='r', edgecolor='#000000', label='Shot Off Target')
@@ -312,7 +313,7 @@ if competitions:
                     pitch.lines(chance.x, chance.y, chance.end_x, chance.end_y, color='#ffea00', comet = True, lw = 2.5, ax=ax, label='Key Pass')
                     ax.scatter(chance['end_y'], chance['end_x'], s=50, c='black', edgecolor='#ffea00')
 
-                    plt.scatter(succ_dribble['y'], succ_dribble['x'], s= 200, c = '#fc3900', marker = '*', edgecolor = '#000000', label = 'Dribble')
+                    plt.scatter(succ_dribble['y'], succ_dribble['x'], s= 200, c = '#009afd', marker = '*', edgecolor = '#000000', label = 'Dribble')
                     plt.scatter(foul_won['y'], foul_won['x'], s= 120, c = '#008000', marker = 'X', edgecolor = '#000000', label = 'Foul Won')
                     plt.scatter(foul_committed['y'], foul_committed['x'], s= 120, c = '#c21919', marker = 'X', edgecolor = '#000000', label = 'Foul Committed')
                     plt.scatter(aerial_won['y'], aerial_won['x'], s = 100, c = '#008000', marker = '^', edgecolor = '#000000', label = 'Aerial Won')
@@ -364,9 +365,9 @@ if competitions:
                     plt.scatter(block['y'], block['x'], s = 200, c = '#00ff00', marker = '*', edgecolor = '#000000', label ='Save')
                     plt.scatter(punch['y'], punch['x'], s = 100, c = '#ffec00', marker = 'o', edgecolor = '#000000', label = 'Punch')
                     plt.scatter(pickup['y'], pickup['x'], s = 120, c = '#dd571c', marker = '+', edgecolor = '#000000', label = 'Pick-Up')
-                    plt.scatter(recovery['y'], recovery['x'], s= 120, c = '#fcd200', marker = ',', edgecolor = '#000000', label = 'Ball Recovery')
-                    plt.scatter(tackle['y'], tackle['x'], s= 120,c = 'cyan', marker = ',', edgecolor = '#000000', label = 'Tackle')
-                    plt.scatter(interception['y'], interception['x'], s = 120, c = '#ff007f', marker = ',', edgecolor = '#000000', label = 'Interception')
+                    plt.scatter(tackle['y'], tackle['x'], s= 130,c = '#bebebe', marker = 'H', edgecolor = '#000000', label = 'Tackle')
+                    plt.scatter(recovery['y'], recovery['x'], s= 130, c = '#fcd200', marker = 'H', edgecolor = '#000000', label = 'Ball Recovery')
+                    plt.scatter(interception['y'], interception['x'], s = 130, c = '#ff007f', marker = 'H', edgecolor = '#000000', label = 'Interception')
                     plt.scatter(clearance['y'], clearance['x'], s = 100, c = '#9999ff', marker = 'x', edgecolor = '#000000', label = 'Clearance')
                     plt.scatter(shield['y'], shield['x'], s = 50, c = '#dd571c', marker = 'D', edgecolor = '#000000', label = 'Shielding Ball Out')
                     plt.scatter(foul_won['y'], foul_won['x'], s= 120, c = '#008000', marker = 'X', edgecolor = '#000000', label = 'Foul Won')
@@ -384,10 +385,10 @@ if competitions:
 
                 else:
                     de = pitch.kdeplot(passes.x, passes.y, ax=ax, shade=True, shade_lowest=False, alpha=0.4, n_levels=10, cmap='magma')
-                    plt.scatter(recovery['y'], recovery['x'], s= 120, c = '#fcd200', marker = ',', edgecolor = '#000000', label = 'Ball Recovery')
-                    plt.scatter(tackle['y'], tackle['x'], s= 120,c = 'cyan', marker = ',', edgecolor = '#000000', label = 'Tackle')
-                    plt.scatter(block['y'], block['x'], s = 120, c = '#009afd', marker = ',', edgecolor = '#000000', label ='Block')
-                    plt.scatter(interception['y'], interception['x'], s = 120, c = '#ff007f', marker = ',', edgecolor = '#000000', label = 'Interception')
+                    plt.scatter(tackle['y'], tackle['x'], s= 130,c = '#bebebe', marker = 'H', edgecolor = '#000000', label = 'Tackle')
+                    plt.scatter(recovery['y'], recovery['x'], s= 130, c = '#fcd200', marker = 'H', edgecolor = '#000000', label = 'Ball Recovery')
+                    plt.scatter(block['y'], block['x'], s = 130, c = 'cyan', marker = 'H', edgecolor = '#000000', label ='Block') #009afd
+                    plt.scatter(interception['y'], interception['x'], s = 130, c = '#ff007f', marker = 'H', edgecolor = '#000000', label = 'Interception')
                     plt.scatter(clearance['y'], clearance['x'], s = 100, c = '#9999ff', marker = 'x', edgecolor = '#000000', label = 'Clearance')
                     plt.scatter(offside['y'], offside['x'], s= 120, c = '#fcd200', marker = 'P', edgecolor = '#000000', label = 'Offside Provoked')
                     plt.scatter(shield['y'], shield['x'], s = 50, c = '#dd571c', marker = 'D', edgecolor = '#000000', label = 'Shielding Ball Out')
