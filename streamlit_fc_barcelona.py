@@ -89,6 +89,18 @@ if competitions:
 
             if action_filter == "ALL ACTIONS IN THE MATCH":
                 goal = filtered_data[filtered_data['typeId'] == 16]
+
+                qualifier_columns = [col for col in goal.columns if col.startswith('qualifier/') and col.endswith('/value')]
+
+                if qualifier_columns:
+                    own_goal = goal[goal[qualifier_columns].apply(lambda row: 'OWN_GOAL' in row.values, axis=1)]
+                else:
+                    own_goal = pd.DataFrame()
+
+                # Ensure x and y exist to prevent KeyError
+                if own_goal.empty or 'x' not in own_goal.columns or 'y' not in own_goal.columns:
+                    own_goal = pd.DataFrame({'x': [], 'y': []})  # Empty DataFrame to prevent errors
+                    
                 shot_miss = filtered_data[filtered_data['typeId'] == 13]
                 shot_post = filtered_data[filtered_data['typeId'] == 14]
                 shot_saved = filtered_data[filtered_data['typeId'] == 15]
@@ -150,6 +162,7 @@ if competitions:
                     plt.scatter(foul_committed['y'], foul_committed['x'], s= 120, c = '#c21919', marker = 'X', edgecolor = '#000000', label = 'Foul Committed')
                     plt.scatter(dispossessed['y'], dispossessed['x'], s = 100, c = '#cb0000', marker = 'p', edgecolor = '#000000', label = 'Dispossessed')
                     plt.scatter(dribbled_past['y'], dribbled_past['x'], s = 50, c = '#cb0000', marker = 'x', edgecolor = '#000000', label = 'Dribbled Past')
+                    pitch.scatter(own_goal['x'], own_goal['y'], s=120, c='orange', edgecolors='red', label='Own Goal', marker = 'football', ax=ax)
 
                     ax.legend(loc='upper left', bbox_to_anchor=(-0.19, 1.12), facecolor = 'black', labelcolor = 'white', prop = {'size': 10}, framealpha=0.5, ncol=4, edgecolor='#ffffff')
 
@@ -191,6 +204,7 @@ if competitions:
                     plt.scatter(aerial_lost['y'], aerial_lost['x'], s = 100, c = '#c21919', marker = '^', edgecolor = '#000000', label = 'Aerial Lost')
                     plt.scatter(dispossessed['y'], dispossessed['x'], s = 100, c = '#cb0000', marker = 'p', edgecolor = '#000000', label = 'Dispossessed')
                     plt.scatter(dribbled_past['y'], dribbled_past['x'], s = 50, c = '#cb0000', marker = 'x', edgecolor = '#000000', label = 'Dribbled Past')
+                    pitch.scatter(own_goal['x'], own_goal['y'], s=120, c='orange', edgecolors='red', label='Own Goal', marker = 'football', ax=ax)
 
                     ax.legend(loc='upper left', bbox_to_anchor=(-0.23, 1.17), facecolor = 'black', labelcolor = 'white', prop = {'size': 10}, framealpha=0.5, ncol=4, edgecolor='#ffffff')
 
@@ -329,7 +343,17 @@ if competitions:
                         st.pyplot(fig)                  
                     
             if action_filter == "DEFENSIVE ACTIONS":
+                goal = filtered_data[filtered_data['typeId'] == 16]
                 passes = filtered_data[filtered_data['typeId'] == 1]
+
+                if qualifier_columns:
+                    own_goal = goal[goal[qualifier_columns].apply(lambda row: 'OWN_GOAL' in row.values, axis=1)]
+                else:
+                    own_goal = pd.DataFrame()
+
+                # Ensure x and y exist to prevent KeyError
+                if own_goal.empty or 'x' not in own_goal.columns or 'y' not in own_goal.columns:
+                    own_goal = pd.DataFrame({'x': [], 'y': []})  # Empty DataFrame to prevent errors
                     
                 recovery = filtered_data[filtered_data['typeId'] == 49]
                 offside = filtered_data[filtered_data['typeId'] == 55]
@@ -374,6 +398,7 @@ if competitions:
                     plt.scatter(foul_committed['y'], foul_committed['x'], s= 120, c = '#c21919', marker = 'X', edgecolor = '#000000', label = 'Foul Committed')
                     plt.scatter(dispossessed['y'], dispossessed['x'], s = 100, c = '#cb0000', marker = 'p', edgecolor = '#000000', label = 'Dispossessed')
                     plt.scatter(dribbled_past['y'], dribbled_past['x'], s = 50, c = '#cb0000', marker = 'x', edgecolor = '#000000', label = 'Dribbled Past')
+                    pitch.scatter(own_goal['x'], own_goal['y'], s=120, c='orange', edgecolors='red', label='Own Goal', marker = 'football', ax=ax)
 
                     ax.legend(loc='upper left', bbox_to_anchor=(-0.13, 1.09), facecolor = 'black', labelcolor = 'white', prop = {'size': 10}, framealpha=0.5, ncol=4, edgecolor='#ffffff')
 
@@ -398,6 +423,7 @@ if competitions:
                     plt.scatter(aerial_lost['y'], aerial_lost['x'], s = 100, c = '#c21919', marker = '^', edgecolor = '#000000', label = 'Aerial Lost')
                     plt.scatter(dispossessed['y'], dispossessed['x'], s = 100, c = '#cb0000', marker = 'p', edgecolor = '#000000', label = 'Dispossessed')
                     plt.scatter(dribbled_past['y'], dribbled_past['x'], s = 50, c = '#cb0000', marker = 'x', edgecolor = '#000000', label = 'Dribbled Past')
+                    pitch.scatter(own_goal['x'], own_goal['y'], s=120, c='orange', edgecolors='red', label='Own Goal', marker = 'football', ax=ax)
 
                     ax.legend(loc='upper left', bbox_to_anchor=(-0.17, 1.12), facecolor = 'black', labelcolor = 'white', prop = {'size': 10}, framealpha=0.5, ncol=4, edgecolor='#ffffff')
 
