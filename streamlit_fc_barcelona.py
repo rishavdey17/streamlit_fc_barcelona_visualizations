@@ -162,7 +162,7 @@ if competitions:
                     plt.scatter(foul_committed['y'], foul_committed['x'], s= 120, c = '#c21919', marker = 'X', edgecolor = '#000000', label = 'Foul Committed')
                     plt.scatter(dispossessed['y'], dispossessed['x'], s = 100, c = '#cb0000', marker = 'p', edgecolor = '#000000', label = 'Dispossessed')
                     plt.scatter(dribbled_past['y'], dribbled_past['x'], s = 50, c = '#cb0000', marker = 'x', edgecolor = '#000000', label = 'Dribbled Past')
-                    pitch.scatter(own_goal['x'], own_goal['y'], s=120, c='orange', edgecolors='red', label='Own Goal', marker = 'football', ax=ax)
+                    pitch.scatter(own_goal['x'], own_goal['y'], s=120, c='orange', edgecolor='red', label='Own Goal', marker = 'X')
 
                     ax.legend(loc='upper left', bbox_to_anchor=(-0.19, 1.12), facecolor = 'black', labelcolor = 'white', prop = {'size': 10}, framealpha=0.5, ncol=4, edgecolor='#ffffff')
 
@@ -288,9 +288,9 @@ if competitions:
                 if selected_player in ["Wojciech Szczesny", "Wojciech Szczęsny", "Inaki Pena", "Iñaki Peña", "Marc-Andre ter Stegen"]:
                     de = pitch.kdeplot(passes.x, passes.y, ax=ax, shade=True, shade_lowest=False, alpha=0.4, n_levels=10, cmap='magma')
                     pitch.scatter(goal['x'], goal['y'], s=120, c='#00ff00', edgecolors='#06402b', label='Goal', marker = 'football', ax=ax)
-                    pitch.scatter(shot_saved['y'], shot_saved['x'], s=120, c='#ff7c60', edgecolors='#000000', label='Saved/Blocked Shot', marker = 'football', ax=ax)
-                    pitch.scatter(shot_post['y'], shot_post['x'], s=120, c='w', edgecolors='#000000', label='Shot Off Woodwork', marker = 'football', ax=ax)
-                    pitch.scatter(shot_miss['y'], shot_miss['x'], s=120, c='r', edgecolors='#000000', label='Shot Off Target', marker = 'football', ax=ax)
+                    pitch.scatter(shot_saved['x'], shot_saved['y'], s=120, c='#ff7c60', edgecolors='#000000', label='Saved/Blocked Shot', marker = 'football', ax=ax)
+                    pitch.scatter(shot_post['x'], shot_post['y'], s=120, c='w', edgecolors='#000000', label='Shot Off Woodwork', marker = 'football', ax=ax)
+                    pitch.scatter(shot_miss['x'], shot_miss['y'], s=120, c='r', edgecolors='#000000', label='Shot Off Target', marker = 'football', ax=ax)
 
                     pitch.lines(assist.x, assist.y, assist.end_x, assist.end_y, color='#00ff00', comet = True, lw = 2.5, ax=ax, label='Assist')
                     ax.scatter(assist['end_y'], assist['end_x'], s=50, c='black', edgecolor='#00ff00')
@@ -317,9 +317,9 @@ if competitions:
                 else:
                     de = pitch.kdeplot(passes.x, passes.y, ax=ax, shade=True, shade_lowest=False, alpha=0.4, n_levels=10, cmap='magma')
                     pitch.scatter(goal['x'], goal['y'], s=120, c='#00ff00', edgecolors='#06402b', label='Goal', marker = 'football', ax=ax)
-                    pitch.scatter(shot_saved['y'], shot_saved['x'], s=120, c='#ff7c60', edgecolors='#000000', label='Saved/Blocked Shot', marker = 'football', ax=ax)
-                    pitch.scatter(shot_post['y'], shot_post['x'], s=120, c='w', edgecolors='#000000', label='Shot Off Woodwork', marker = 'football', ax=ax)
-                    pitch.scatter(shot_miss['y'], shot_miss['x'], s=120, c='r', edgecolors='#000000', label='Shot Off Target', marker = 'football', ax=ax)
+                    pitch.scatter(shot_saved['x'], shot_saved['y'], s=120, c='#ff7c60', edgecolors='#000000', label='Saved/Blocked Shot', marker = 'football', ax=ax)
+                    pitch.scatter(shot_post['x'], shot_post['y'], s=120, c='w', edgecolors='#000000', label='Shot Off Woodwork', marker = 'football', ax=ax)
+                    pitch.scatter(shot_miss['x'], shot_miss['y'], s=120, c='r', edgecolors='#000000', label='Shot Off Target', marker = 'football', ax=ax)
 
                     pitch.lines(assist.x, assist.y, assist.end_x, assist.end_y, color='#00ff00', comet = True, lw = 2.5, ax=ax, label='Assist')
                     ax.scatter(assist['end_y'], assist['end_x'], s=50, c='black', edgecolor='#00ff00')
